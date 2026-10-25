@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore aerial photography, agricultural drone services, mapping, inspections, and drone training with Luminaries." />
+  <title>Luminaries| Drone Services & Experiences</title>
+  <style>
+    :root {
+      --ink: #10221d;
+      --muted: #62716b;
+      --paper: #f7f8f4;
+      --white: #fff;
+      --green: #b8f36b;
+      --deep: #123c30;
+      --line: #e1e7df;
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { background: var(--deep); color: #eaf5ed; font-size: 12px; padding: 10px 0; }
+    .topbar-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(247,248,244,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(16,34,29,.08); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 850; letter-spacing: -1px; font-size: 23px; }
+    .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; color: var(--deep); background: var(--green); font-size: 20px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; color: #40544b; }
+    .nav-links a:hover { color: #0b6c4c; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 0; cursor: pointer; border-radius: 999px; padding: 14px 21px; font-weight: 750; font-size: 14px; transition: transform .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-dark { background: var(--deep); color: white; }
+    .btn-light { background: var(--green); color: var(--ink); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 12px; padding: 10px 12px; }
+    .hero { padding: 54px 0 68px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.02fr; gap: 46px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: #42745e; }
+    .eyebrow:before { content: ""; width: 22px; height: 2px; background: #7bb83b; }
+    h1 { font-size: clamp(42px, 5.2vw, 72px); line-height: .99; letter-spacing: -4px; margin: 20px 0; max-width: 650px; }
+    h1 span { color: #47844d; }
+    .hero-copy { max-width: 510px; color: var(--muted); line-height: 1.75; font-size: 17px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .text-link { font-size: 14px; font-weight: 750; padding: 14px 6px; }
+    .trust-row { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 36px; color: #5a6c62; font-size: 12px; }
+    .trust-row span:before { content: "✓"; display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: #e2f2d4; color: #2c6b40; margin-right: 7px; font-weight: 900; }
+    .hero-visual { position: relative; min-height: 485px; border-radius: 30px; overflow: hidden; background: #d5e5d1; }
+    .hero-visual img { width: 100%; height: 100%; min-height: 485px; object-fit: cover; display: block; }
+    .image-label { position: absolute; left: 22px; bottom: 22px; padding: 15px 18px; background: rgba(255,255,255,.94); border-radius: 16px; box-shadow: 0 12px 40px #10221d1a; }
+    .image-label small { color: var(--muted); display: block; margin-bottom: 4px; }
+    .image-label strong { font-size: 15px; }
+    .floating-tag { position: absolute; top: 22px; right: 22px; background: var(--green); padding: 12px 15px; border-radius: 14px; font-size: 12px; font-weight: 850; }
+    .stats { background: white; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat { padding: 25px 20px; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; font-size: 17px; margin-bottom: 5px; }
+    .stat span { color: var(--muted); font-size: 12px; }
+    section { padding: 88px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 34px; }
+    .section-head h2 { margin: 12px 0 0; font-size: clamp(30px, 3.7vw, 46px); letter-spacing: -2px; line-height: 1.06; }
+    .section-head p { max-width: 410px; color: var(--muted); line-height: 1.7; margin: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card { background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: 25px; min-height: 245px; display: flex; flex-direction: column; align-items: flex-start; transition: transform .2s, box-shadow .2s; }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px #123c3010; }
+    .service-icon { display: grid; place-items: center; width: 47px; height: 47px; border-radius: 15px; background: #eaf5e3; font-size: 22px; margin-bottom: 22px; }
+    .service-card h3 { margin: 0 0 10px; font-size: 19px; letter-spacing: -.5px; }
+    .service-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .service-card a { margin-top: auto; padding-top: 20px; font-size: 13px; font-weight: 800; color: #36754b; }
+    .feature { background: #102f26; color: white; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .feature h2 { font-size: clamp(32px, 4vw, 49px); line-height: 1.05; letter-spacing: -2px; margin: 15px 0 18px; }
+    .feature p { color: #c2d3c9; line-height: 1.8; }
+    .feature-list { display: grid; gap: 14px; margin: 25px 0 30px; padding: 0; list-style: none; }
+    .feature-list li { display: flex; gap: 12px; color: #e2eee6; font-size: 14px; }
+    .feature-list li:before { content: "✓"; color: var(--green); font-weight: 900; }
+    .feature-image { position: relative; }
+    .feature-image img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; border-radius: 25px; }
+    .feature-note { position: absolute; bottom: 18px; left: 18px; right: 18px; background: rgba(255,255,255,.94); color: var(--ink); border-radius: 15px; padding: 16px 18px; font-size: 13px; }
+    .projects-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; }
+    .project { border-radius: 20px; overflow: hidden; background: #dce7d7; position: relative; min-height: 270px; }
+    .project img { width: 100%; height: 100%; min-height: 270px; object-fit: cover; display: block; transition: transform .4s; }
+    .project:hover img { transform: scale(1.04); }
+    .project-caption { position: absolute; bottom: 12px; left: 12px; right: 12px; background: rgba(255,255,255,.94); padding: 13px 15px; border-radius: 13px; }
+    .project-caption strong { display: block; font-size: 14px; }
+    .project-caption span { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .booking { background: #eaf0e5; }
+    .booking-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 50px; align-items: start; }
+    .booking h2 { font-size: clamp(34px, 4vw, 48px); line-height: 1.05; letter-spacing: -2px; margin: 15px 0; }
+    .booking-copy { color: var(--muted); line-height: 1.8; }
+    .contact-details { margin-top: 25px; display: grid; gap: 12px; font-size: 14px; }
+    .contact-details span { display: flex; gap: 10px; align-items: center; }
+    form { background: white; border: 1px solid #dfe7db; padding: 26px; border-radius: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 12px; font-weight: 800; color: #40544b; }
+    input, select, textarea { width: 100%; border: 1px solid #dce4dc; background: #fbfcfa; padding: 13px 14px; border-radius: 11px; outline: none; color: var(--ink); }
+    input:focus, select:focus, textarea:focus { border-color: #6d9e62; box-shadow: 0 0 0 3px #b8f36b40; }
+    textarea { min-height: 105px; resize: vertical; }
+    form button { grid-column: 1 / -1; justify-self: start; }
+    .form-note { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .cta-strip { padding: 30px 0; background: var(--green); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .cta-inner h2 { font-size: clamp(22px, 3vw, 32px); letter-spacing: -1px; margin: 0; }
+    footer { background: #0b211a; color: #d9e6dd; padding: 38px 0 25px; }
+    .footer-main { display: flex; justify-content: space-between; gap: 35px; flex-wrap: wrap; }
+    footer .brand { color: white; }
+    footer p { color: #a8bdb0; max-width: 340px; line-height: 1.7; font-size: 13px; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; font-size: 13px; }
+    .copyright { border-top: 1px solid #29443a; margin-top: 28px; padding-top: 20px; color: #93aa9c; font-size: 11px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 850px) {
+      .hero-grid, .feature-grid, .booking-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 35px; }
+      .hero-visual, .hero-visual img { min-height: 360px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project:first-child { grid-column: 1 / -1; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .nav-links { display: none; position: absolute; top: 76px; left: 0; right: 0; padding: 20px; background: var(--paper); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 18px; }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .nav > .btn { display: none; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 28px, 1160px); }
+      h1 { letter-spacing: -2.5px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .services-grid, .projects-grid { grid-template-columns: 1fr; }
+      .project:first-child { grid-column: auto; }
+      .project, .project img { min-height: 240px; }
+      form { grid-template-columns: 1fr; padding: 19px; }
+      .field.full, form button, .form-note { grid-column: auto; }
+      .cta-inner { align-items: flex-start; flex-direction: column; }
+      .hero-visual, .hero-visual img { min-height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Drone services for business, agriculture & creativity</span>
+      <span>Built for safe, responsible flight · Nigeria</span>
+    </div>
+  </div>
+  <header>
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Luminaries home"><span class="brand-mark">✳</span> Luminaries</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#booking">Book a service</a>
+      </div>
+      <a class="btn btn-dark" href="#booking">Let's talk <span>↗</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">A new perspective from above</div>
+          <h1>See more.<br><span>Go further.</span><br>Fly smarter.</h1>
+          <p class="hero-copy">From cinematic aerial content to smarter farming and mapping, we help people and businesses put drone technology to work.</p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#services">Explore our services <span>↗</span></a>
+            <a class="text-link" href="#projects">View our work →</a>
+          </div>
+          <div class="trust-row"><span>Professional approach</span><span>Purpose-built solutions</span><span>Safety first</span></div>
+        </div>
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200&q=85" alt="Drone flying above a landscape" />
+          <div class="floating-tag">AERIAL · AGRI · TECH</div>
+          <div class="image-label"><small>Explore what is possible</small><strong>One platform. Many perspectives.</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="container stats-grid">
+        <div class="stat"><strong>Creative</strong><span>Aerial photo & video</span></div>
+        <div class="stat"><strong>Practical</strong><span>Agriculture & inspection</span></div>
+        <div class="stat"><strong>Technical</strong><span>Mapping & drone projects</span></div>
+        <div class="stat"><strong>Accessible</strong><span>Training & consultation</span></div>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">What we do</div><h2>Drone services for<br>real-world needs.</h2></div>
+          <p>Choose a service that fits your project. If you have a different idea involving drones, tell us about it and we can discuss the right approach.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><div class="service-icon">📸</div><h3>Aerial Photography</h3><p>High-impact aerial photos and videos for events, properties, tourism, brands and creative projects.</p><a href="#booking">Request this service ↗</a></article>
+          <article class="service-card"><div class="service-icon">🌱</div><h3>Agriculture & Farms</h3><p>Crop monitoring, field observation and aerial insights to support informed farm decisions.</p><a href="#booking">Request this service ↗</a></article>
+          <article class="service-card"><div class="service-icon">🗺️</div><h3>Mapping & Survey Support</h3><p>Aerial mapping and site documentation for land, construction and project planning.</p><a href="#booking">Request this service ↗</a></article>
+          <article class="service-card"><div class="service-icon">🏗️</div><h3>Inspection & Monitoring</h3><p>Visual inspection and progress documentation for suitable structures and project sites.</p><a href="#booking">Request this service ↗</a></article>
+          <article class="service-card"><div class="service-icon">🎓</div><h3>Training & Demonstrations</h3><p>Beginner-friendly learning sessions, demonstrations and enquiries about responsible drone operation.</p><a href="#booking">Ask about training ↗</a></article>
+          <article class="service-card"><div class="service-icon">🛠️</div><h3>Drone Tech Projects</h3><p>Consultation on drone equipment, prototyping, sensor integration and custom technology ideas.</p><a href="#booking">Discuss a project ↗</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="about">
+      <div class="container feature-grid">
+        <div>
+          <div class="eyebrow" style="color:#b8f36b">More than flying</div>
+          <h2>Technology with a purpose.</h2>
+          <p>We want to make drone technology easier to understand and more useful — whether you're a farmer exploring aerial insights, a business planning a shoot, or a student curious about how drones work.</p>
+          <ul class="feature-list">
+            <li>Solutions shaped around your project goals</li>
+            <li>Clear communication from enquiry to delivery</li>
+            <li>Responsible operation and local requirements in mind</li>
+          </ul>
+          <a class="btn btn-light" href="#booking">Tell us about your idea ↗</a>
+        </div>
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1100&q=85" alt="Drone in flight outdoors" loading="lazy" />
+          <div class="feature-note"><strong>Have a drone idea?</strong><br>Let's explore how it could become a practical project.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="eyebrow">Aerial perspectives</div><h2>Projects & possibilities.</h2></div>
+          <p>This starter gallery shows the kinds of work the site can feature. Replace these sample images with your own real projects as your portfolio grows.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project"><img src="https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?auto=format&fit=crop&w=1100&q=85" alt="Aerial view of a green landscape" loading="lazy"><div class="project-caption"><strong>Land & Landscape</strong><span>Aerial visuals and site overview</span></div></article>
+          <article class="project"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85" alt="Agricultural fields viewed from above" loading="lazy"><div class="project-caption"><strong>Precision Agriculture</strong><span>Farm observation and monitoring</span></div></article>
+          <article class="project"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" alt="Technology workspace" loading="lazy"><div class="project-caption"><strong>Drone Technology</strong><span>Ideas, tools and innovation</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="booking">
+      <div class="container booking-grid">
+        <div>
+          <div class="eyebrow">Start a project</div>
+          <h2>What would you like us to help you do?</h2>
+          <p class="booking-copy">Send a few details about your idea. This demo form will prepare an enquiry message for you to send by email. Before launch, connect it to your real business email, WhatsApp or booking system.</p>
+          <div class="contact-details">
+            <span>✉️ <strong>Email:</strong> hello@yourdronebusiness.com</span>
+            <span>📍 <strong>Service area:</strong> Nigeria (edit to your coverage)</span>
+            <span>🛡️ <strong>Approach:</strong> Safety and applicable rules first</span>
+          </div>
+        </div>
+        <form id="bookingForm">
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" placeholder="e.g. Ada Okafor" required></div>
+          <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+          <div class="field"><label for="service">Service you're interested in</label><select id="service" name="service" required><option value="">Choose a service</option><option>Aerial photography & videography</option><option>Agriculture & farm monitoring</option><option>Mapping & survey support</option><option>Inspection & monitoring</option><option>Training & demonstration</option><option>Drone technology project</option><option>Other</option></select></div>
+          <div class="field"><label for="date">Preferred date (optional)</label><input id="date" name="date" type="date"></div>
+          <div class="field full"><label for="message">Tell us about your project</label><textarea id="message" name="message" placeholder="Where is the project, and what would you like to achieve?"></textarea></div>
+          <button class="btn btn-dark" type="submit">Prepare enquiry ↗</button>
+          <p class="form-note">Demo only: this form opens your email app with the enquiry details. No information is stored on this website.</p>
+        </form>
+      </div>
+    </section>
+
+    <div class="cta-strip">
+      <div class="container cta-inner"><h2>Your next idea could start in the air.</h2><a class="btn btn-dark" href="#booking">Let's plan it together ↗</a></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div><a class="brand" href="#home"><span class="brand-mark">✳</span> Luminaries</a><p>Drone services, aerial experiences and technology solutions — designed around real-world needs.</p></div>
+        <div class="footer-links"><a href="#services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#booking">Contact</a></div>
+      </div>
+      <div class="copyright"><span>© <span id="year"></span> Luminaries. Starter website concept.</span><span>Replace the demo brand, contact details and sample images before publishing.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('bookingForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const subject = encodeURIComponent(`Drone service enquiry: ${data.get('service')}`);
+      const body = encodeURIComponent(
+        `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nService: ${data.get('service')}\nPreferred date: ${data.get('date') || 'Not specified'}\n\nProject details:\n${data.get('message') || 'Not provided'}`
+      );
+      window.location.href = `mailto:hello@yourdronebusiness.com?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
